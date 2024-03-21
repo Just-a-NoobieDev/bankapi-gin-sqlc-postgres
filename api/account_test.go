@@ -37,7 +37,7 @@ func TestCreateAccountAPI(t *testing.T) {
 	}{
 		{
 			name: "OK",
-			body: fmt.Sprintf(`{"id":%d,"name":"%s","balance":%d,"currency":"%s"}`, account.ID, account.Name, account.Balance, account.Currency),
+			body: fmt.Sprintf(`{"name":"%s","currency":"%s"}`, account.Name, account.Currency),
 			buildStubs: func(store *mockdb.MockStore) {
 
 				arg := db.CreateAccountParams{
@@ -57,7 +57,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		},
 		{
 			name: "Internal Error",
-			body: fmt.Sprintf(`{"id":%d,"name":"%s","balance":%d,"currency":"%s"}`, account.ID, account.Name, account.Balance, account.Currency),
+			body: fmt.Sprintf(`{"name":"%s","currency":"%s"}`, account.Name, account.Currency),
 			buildStubs: func(store *mockdb.MockStore) {
 				
 				arg := db.CreateAccountParams{
@@ -76,7 +76,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		},
 		{
 			name: "Invalid Currency",
-			body: fmt.Sprintf(`{"id":%d,"name":"%s","balance":%d,"currency":"%s"}`, account.ID, account.Name, account.Balance, "invalid"),
+			body: fmt.Sprintf(`{"name":"%s","currency":"%s"}`, account.Name, "invalid"),
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
 					CreateAccount(gomock.Any(), gomock.Any()).
@@ -88,7 +88,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		},
 		{
 			name: "Invalid Name",
-			body: fmt.Sprintf(`{"id":%d,"name":"%s","balance":%d,"currency":"%s"}`, account.ID, "", account.Balance, account.Currency),
+			body: fmt.Sprintf(`{"name":"%s","currency":"%s"}`, "", account.Currency),
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
 					CreateAccount(gomock.Any(), gomock.Any()).
