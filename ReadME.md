@@ -19,7 +19,6 @@ This is a simple bank api that I made using Go programming language and other te
 
     - `GET` all accounts paginated
 
-      - Method `GET`
       - endpoint `/accounts?page=?&size=?`
       - Query Params
         - `page` `required` page number
@@ -27,13 +26,11 @@ This is a simple bank api that I made using Go programming language and other te
 
     - `GET` account
 
-      - Method `GET`
       - endpoint `/accounts/:id`
       - Params -`:id` specific account id
 
     - `POST` create account
 
-      - Method `POST`
       - endpoint `/accounts`
       - Body
         - `name` full name of account
@@ -41,7 +38,6 @@ This is a simple bank api that I made using Go programming language and other te
 
     - `POST` deposit
 
-      - Method `POST`
       - endpoint `/accounts/deposit`
       - Body
         - `id` id of the account
@@ -49,7 +45,6 @@ This is a simple bank api that I made using Go programming language and other te
 
     - `DELETE` account
 
-      - Method `DELETE`
       - endpoint `/accounts/:id`
       - Params -`:id` specific account id
 
@@ -57,7 +52,6 @@ This is a simple bank api that I made using Go programming language and other te
 
     - `GET` all transfers by account paginated
 
-      - Method `GET`
       - endpoint `/transfers?id=?&page=?&size=?`
       - Query Params
         - `id` `required` id of the account
@@ -66,13 +60,11 @@ This is a simple bank api that I made using Go programming language and other te
 
     - `GET` transfer
 
-      - Method `GET`
       - endpoint `/transfers/:id`
       - Params -`:id` specific transfer id
 
     - `POST` create transfer
 
-      - Method `POST`
       - endpoint `/transfers`
       - Body
         - `from_account_id` id of the sender
