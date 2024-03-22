@@ -351,6 +351,7 @@ func TestGetAccountsAPI(t *testing.T) {
 			},
 			checkResponse: func(recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
+				require.Len(t, accounts, n)
 				requireBodyMatchAccounts(t, recorder.Body, accounts)
 			},
 		},
@@ -498,7 +499,7 @@ func TestDepositAPI(t *testing.T) {
 		},
 		{
 			name: "Invalid Amount",
-			body: fmt.Sprintf(`{"id":%d,"amount":%d}`, account.ID, 0),
+			body: fmt.Sprintf(`{"id":%d,"amount":%d}`, account.ID, -1),
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
 					AddAccountBalance(gomock.Any(), gomock.Any()).

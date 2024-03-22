@@ -11,7 +11,7 @@ import (
 
 type createAccountRequest struct {
 	Name     string `json:"name" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR"`
+	Currency string `json:"currency" binding:"required,currency"`
 }
 
 func (server *Server) CreateAccount(ctx *gin.Context) {
@@ -123,7 +123,7 @@ func (server *Server) DeleteAccount(ctx *gin.Context) {
 
 type depositRequest struct {
 	ID int64 `json:"id" binding:"required,min=1"`
-	Amount int64 `json:"amount" binding:"required,min=1"`
+	Amount int64 `json:"amount" binding:"required,gt=0"`
 }
 
 func (server *Server) Deposit(ctx *gin.Context) {

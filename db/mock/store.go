@@ -214,6 +214,21 @@ func (mr *MockStoreMockRecorder) GetTransfers(arg0, arg1 interface{}) *gomock.Ca
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetTransfers", reflect.TypeOf((*MockStore)(nil).GetTransfers), arg0, arg1)
 }
 
+// GetTransfersByAccount mocks base method.
+func (m *MockStore) GetTransfersByAccount(arg0 context.Context, arg1 db.GetTransfersByAccountParams) ([]db.Transfer, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetTransfersByAccount", arg0, arg1)
+	ret0, _ := ret[0].([]db.Transfer)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetTransfersByAccount indicates an expected call of GetTransfersByAccount.
+func (mr *MockStoreMockRecorder) GetTransfersByAccount(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetTransfersByAccount", reflect.TypeOf((*MockStore)(nil).GetTransfersByAccount), arg0, arg1)
+}
+
 // TransferTx mocks base method.
 func (m *MockStore) TransferTx(arg0 context.Context, arg1 db.TransferTxParams) (db.TransferTxResult, error) {
 	m.ctrl.T.Helper()

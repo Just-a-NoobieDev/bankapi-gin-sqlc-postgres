@@ -80,3 +80,26 @@ func TestGetTransfers(t *testing.T) {
 		require.NotEmpty(t, transfer)
 	}
 }
+
+func TestGetTransfersByAccount(t *testing.T) {
+	account := createRandomAccount(t)
+	account2 := createRandomAccount(t)
+
+	for i := 0; i < 10; i++ {
+		createRandomTransfer(t, account, account2)
+	}
+
+	arg := GetTransfersByAccountParams{
+		ID: account.ID,
+		Off: 1,
+		Size: 5,
+	}
+	
+	transfers, err := testQueries.GetTransfersByAccount(context.Background(), arg)
+	require.NoError(t, err)
+	require.Len(t, transfers, 5)
+
+	for _, transfer := range transfers {
+		require.NotEmpty(t, transfer)
+	}
+}

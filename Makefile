@@ -19,6 +19,12 @@ sqlc:
 test:
 	go test -v -cover ./...
 
+testApi:
+	go test -v -cover ./api/...
+
+testDb:
+	go test -v -cover ./db/...
+
 run:
 	go run main.go
 

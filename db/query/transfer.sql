@@ -19,3 +19,12 @@ WHERE
 ORDER BY id
 LIMIT $3
 OFFSET $4;
+
+-- name: GetTransfersByAccount :many
+SELECT * FROM transfers
+WHERE 
+    from_account_id = sqlc.arg(id) OR
+    to_account_id = sqlc.arg(id)
+ORDER BY id
+LIMIT sqlc.arg(size)
+OFFSET sqlc.arg(off);

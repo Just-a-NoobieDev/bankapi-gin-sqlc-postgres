@@ -106,3 +106,48 @@ func (q *Queries) GetTransfers(ctx context.Context, arg GetTransfersParams) ([]T
 	}
 	return items, nil
 }
+
+const getTransfersByAccount = `-- name: GetTransfersByAccount :many
+SELECT id, from_account_id, to_account_id, amount, created_at FROM transfers
+WHERE 
+    from_account_id = $1 OR
+    to_account_id = $1
+ORDER BY id
+LIMIT $3
+OFFSET $2
+`
+
+type GetTransfersByAccountParams struct {
+	ID   int64 `json:"id"`
+	Off  int32 `json:"off"`
+	Size int32 `json:"size"`
+}
+
+func (q *Queries) GetTransfersByAccount(ctx context.Context, arg GetTransfersByAccountParams) ([]Transfer, error) {
+	rows, err := q.db.QueryContext(ctx, getTransfersByAccount, arg.ID, arg.Off, arg.Size)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []Transfer{}
+	for rows.Next() {
+		var i Transfer
+		if err := rows.Scan(
+			&i.ID,
+			&i.FromAccountID,
+			&i.ToAccountID,
+			&i.Amount,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
