@@ -13,7 +13,7 @@ This is a simple bank api that I made using Go programming language and other te
 
 ## Endpoints (so far)
 
-- Version 1 /api/v1
+- Version 1 `/api/v1`
 
   - accounts
 
