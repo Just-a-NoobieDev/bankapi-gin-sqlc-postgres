@@ -71,3 +71,13 @@ This is a simple bank api that I made using Go programming language and other te
         - `to_account_id` id of the receiver
         - `amount` amount to be transfer
         - `currency` currency supported currently (USD EUR CAD)
+
+  - entry
+
+    - `GET` all entry by account paginated
+
+      - endpoint `/entry?id=?&page=?&size=?`
+      - Query Params
+        - `id` `required` id of the account
+        - `page` `required` page number
+        - `size` `required` size of data per page

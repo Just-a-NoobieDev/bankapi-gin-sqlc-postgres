@@ -33,6 +33,9 @@ func NewServer(store db.Store) *Server {
 		v1.POST("/transfers", server.CreateTransfer)
 		v1.GET("/transfers", server.GetTransfersByAccount)
 		v1.GET("/transfers/:id", server.GetTransferById)
+
+		//entry
+		v1.GET("/entry", server.GetEntriesByAccount)
 	}
 
 	
