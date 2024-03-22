@@ -36,6 +36,9 @@ func NewServer(store db.Store) *Server {
 
 		//entry
 		v1.GET("/entry", server.GetEntriesByAccount)
+
+		//user
+		v1.POST("/users/register", server.CreateUser)
 	}
 
 	

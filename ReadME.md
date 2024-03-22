@@ -81,3 +81,15 @@ This is a simple bank api that I made using Go programming language and other te
         - `id` `required` id of the account
         - `page` `required` page number
         - `size` `required` size of data per page
+
+  - users
+
+    - `POST` create / register user
+
+      - endpoint `/users/register`
+      - Body `all fields required`
+        - `username` primary key, foreign key to the accounts model
+        - `full_name` name of the user
+        - `email` `unique` email of the user
+        - `password` `min=6` 
+        - `password_again`
