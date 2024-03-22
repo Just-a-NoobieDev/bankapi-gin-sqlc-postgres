@@ -1,0 +1,5 @@
+ALTER TABLE IF EXISTS "accounts" DROP CONSTRAINT IF EXISTS "name_currency_key";
+
+ALTER TABLE IF EXISTS "accounts" DROP CONSTRAINT IF EXISTS "accounts_name_fkey";
+
+DROP TABLE IF EXISTS "users";

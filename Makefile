@@ -10,8 +10,14 @@ dropdb:
 migrateup:
 	migrate -path db/migrations -database "postgresql://root:gobank@localhost:5432/gobank?sslmode=disable" -verbose up
 
+migrateup1:
+	migrate -path db/migrations -database "postgresql://root:gobank@localhost:5432/gobank?sslmode=disable" -verbose up 1
+
 migratedown:
 	migrate -path db/migrations -database "postgresql://root:gobank@localhost:5432/gobank?sslmode=disable" -verbose down
+
+migratedown1:
+	migrate -path db/migrations -database "postgresql://root:gobank@localhost:5432/gobank?sslmode=disable" -verbose down 1
 
 sqlc:
 	sqlc generate
@@ -31,4 +37,4 @@ run:
 mock:
 	mockgen -package mockdb  -destination db/mock/store.go  github.com/Just-A-NoobieDev/bankapi-gin-sqlc/db/sqlc Store
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test run mock
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test run mock migratedown1 migrateup1 testApi testDb
