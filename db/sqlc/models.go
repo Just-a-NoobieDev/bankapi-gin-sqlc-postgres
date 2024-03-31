@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// Account represents an account in the database.
 type Account struct {
 	ID        int64     `json:"id"`
 	Name      string    `json:"name"`

@@ -24,6 +24,14 @@ type createUserResponse struct {
 	Email    string `json:"email"`
 }
 
+// CreateUser godoc
+//	@Summary		Create a new user
+//	@Description	Create a new user with the specified username, full name, email and password
+//	@Param			user	body	createUserRequest	true	"Create User Request"
+//	@Produce		application/json
+//	@Tags			users
+//	@Success		200	{object}	createUserResponse
+//	@Router			/users/register [post]
 func (server *Server) CreateUser(ctx *gin.Context) {
 	var req createUserRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {

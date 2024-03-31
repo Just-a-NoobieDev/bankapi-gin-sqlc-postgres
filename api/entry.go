@@ -13,6 +13,14 @@ type getEntriesByAccountRequest struct {
 	Size int32 `form:"size" binding:"required,min=1,max=10"`
 }
 
+// GetEntriesByAccount godoc
+//	@Summary		Get a list of entries by account
+//	@Description	Get a list of entries by account with pagination
+//	@Param			entries	query	getEntriesByAccountRequest	true	"Entries"
+//	@Produce		application/json
+//	@Tags			entries
+//	@Success		200	{object}	[]db.Entry
+//	@Router			/entry [get]
 func (server *Server) GetEntriesByAccount(ctx *gin.Context) {
 	var req getEntriesByAccountRequest
 	if err := ctx.ShouldBindQuery(&req); err != nil {

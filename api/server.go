@@ -2,9 +2,12 @@ package api
 
 import (
 	db "github.com/Just-A-NoobieDev/bankapi-gin-sqlc/db/sqlc"
+	docs "github.com/Just-A-NoobieDev/bankapi-gin-sqlc/docs"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type Server struct {
@@ -13,8 +16,12 @@ type Server struct {
 }
 
 func NewServer(store db.Store) *Server {
+
+	docs.SwaggerInfo.BasePath = "/api/v1"
+
 	server := &Server{store: store}
 	router := gin.Default()
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 		v.RegisterValidation("currency", validCurrency)

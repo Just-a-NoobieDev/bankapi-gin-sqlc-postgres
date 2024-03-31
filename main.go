@@ -11,6 +11,12 @@ import (
 	_ "github.com/lib/pq"
 )
 
+//	@title			Simple Bank API
+//	@version		1.0
+//	@description	A simple bank API using Go, gin-gonic framework, postgresql and sqlc
+
+//	@host		localhost:8080
+//	@BasePath	/api/v1
 func main() {
 
 	config, err := util.LoadConfig(".")

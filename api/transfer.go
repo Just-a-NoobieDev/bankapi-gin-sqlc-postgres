@@ -16,6 +16,14 @@ type createTransferRequest struct {
 	Currency      string `json:"currency" binding:"required,currency"`
 }
 
+// CreateTransfer godoc
+//	@Summary		Create a new transfer
+//	@Description	Create a new transfer between two accounts
+//	@Param			transfer	body	createTransferRequest	true	"Create Transfer Request"
+//	@Produce		application/json
+//	@Tags			transfers
+//	@Success		200	{object}	db.Transfer
+//	@Router			/transfers [post]
 func (server *Server) CreateTransfer(ctx *gin.Context) {
 	var req createTransferRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -53,6 +61,15 @@ type getTransfersByAccountRequest struct {
 	Size int32 `form:"size" binding:"required,min=1,max=10"`
 }
 
+
+// GetTransfersByAccount godoc
+//	@Summary		Get transfers by account ID
+//	@Description	Get transfers by the specified account ID
+//	@Param			transfer	query	getTransfersByAccountRequest	true	"Get Transfers By Account Request"
+//	@Produce		application/json
+//	@Tags			transfers
+//	@Success		200	{object}	[]db.Transfer
+//	@Router			/transfers [get]
 func (server *Server) GetTransfersByAccount(ctx *gin.Context) {
 	var req getTransfersByAccountRequest
 	if err := ctx.ShouldBindQuery(&req); err != nil {
@@ -79,6 +96,14 @@ type getTransferByIdRequest struct {
 	Id int64 `uri:"id" binding:"required,min=1"`
 }
 
+// GetTransferById godoc
+//	@Summary		Get a transfer by ID
+//	@Description	Get a transfer by the specified ID
+//	@Param			id	path	getTransferByIdRequest	true	"Transfer ID"
+//	@Produce		application/json
+//	@Tags			transfers
+//	@Success		200	{object}	db.Transfer
+//	@Router			/transfers/{id} [get]
 func (server *Server) GetTransferById(ctx *gin.Context) {
 	var req getTransferByIdRequest
 	if err := ctx.ShouldBindUri(&req); err != nil {
