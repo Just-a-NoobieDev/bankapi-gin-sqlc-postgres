@@ -93,3 +93,7 @@ This is a simple bank api that I made using Go programming language and other te
         - `email` `unique` email of the user
         - `password` `min=6` 
         - `password_again`
+
+
+Change this to trigger deploy
+1
